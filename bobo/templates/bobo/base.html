@@ -1,0 +1,164 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}父模板{% endblock title %}
+    </title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    {# link引入样式表css（Bootstrap） #}
+	<link rel="stylesheet" href="{% static 'js/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    {% block css %}
+
+    {% endblock css %}
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'js/skel.min.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    {#  script引入js文件 （jquery、Bootstrap）#}
+	<script src="{% static 'js/jquery/jquery-2.1.4.min.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}" type="text/javascript" charset="utf-8">
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'css/skel.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style-wide.css' %}" />
+    </noscript>
+
+</head>
+<body>
+    {# 网页头部导航条#}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                  data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {# 跳转到首页 #}
+          <a class="navbar-brand" href="{% url 'bobo:index' %}" id="moveto">
+              微博
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'bobo:index' %}"><i class="glyphicon glyphicon-home"></i>
+                首页<span class="sr-only">(current)</span></a>
+            </li>
+
+          </ul>
+{#          <form class="navbar-form navbar-left" action="{% url 'bobo:search' %}" method="get">#}
+{#            <div class="form-group">#}
+{#              <input type="text" class="form-control" placeholder="请输入关键词" name="keyword">#}
+{#            </div>#}
+{#            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>搜索</button>#}
+{#          </form>#}
+          <ul class="nav navbar-nav navbar-right">
+              {% if name %}
+                    <li><a href="#"><b>{{name}}</b></a> </li>
+                    <li style="height: 50px">
+                        <a href="#">
+                            <form action="/accounts/logout/" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="退 出"  style="padding: 0px 10px;margin-top: -5px;">
+                            </form>
+                        </a>
+                    </li>
+              {% else %}
+                <li>
+                {# https://api.weibo.com/oauth2/    新浪微博指定发往地址 #}
+                    {# authorize  开始认证 ?之后开始提供参数 #}
+                    {# client_id 开发者账号 #}
+                    {# response_type=code 响应类型为代码 #}
+                    {# redirect_uri 访问微博之后，微博接收用户认证请求，会回访我们的网站http://www.192.168.12.130:8000/ #}
+                    {# request.path django封装好的，原来请求页面的地址 。登陆成功后可以返回用户界面#}
+                    <a href="http://127.0.0.1:8000/accounts/weibo/login">
+                        <img src="{% static 'images/tubiao/tubiao.png' %}" alt="微博开放平台" style="width: 30px;height: 30px;padding: 0px;margin-top: -5px">
+                    </a>
+                </li>
+
+              {% endif %}
+{#            <li class="dropdown">#}
+{#              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
+{#                 aria-expanded="false"> <i class="glyphicon glyphicon-link"></i>网站导航<span class="caret"></span>#}
+{#              </a>#}
+{#              <ul class="dropdown-menu">#}
+{#                <li><a href="#">发表微博</a></li>#}
+{#                <li><a href="#">退出微博</a></li>#}
+{#                <li role="separator" class="divider"></li>#}
+{#                <li><a href="#">查看消息</a></li>#}
+{#                <li><a href="#">最新评论</a></li>#}
+{#                <li role="separator" class="divider"></li>#}
+{#                <li><a href="#">修改登录密码</a></li>#}
+{#                <li><a href="#">完善个人资料</a></li>#}
+{#              </ul>#}
+{#            </li>#}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+        <h1>预留块</h1>
+
+    {% endblock content %}
+
+
+    {% block script %}
+    {% endblock script %}
+
+    <a href="#moveto">
+        <div id="back_to_top" style="position: fixed;bottom: 10px;right: 10px;color: whitesmoke;
+    background-color: black;width: 30px;height: 30px;text-align: center;
+    box-shadow: 5px 5px 5px #888888;border-radius: 2px; ">
+        <i class="glyphicon glyphicon-arrow-up" style="font-size: 17px;margin: 5px auto"></i>
+    </div>
+    </a>
+
+
+
+	{# 网页页脚——网站备案信息+微博更多信息 #}
+    <div id="footer" class="wrapper style2">
+        <div class="container container3">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-12">
+                    <p>
+                        版权所有&copy;翻版必究
+                    </p>
+                    <p>
+                        {# 行内列表  #}
+                        <ul class="list-inline" >
+                            <li>京ICP证100780号</li>
+                            <li>京网文[2017]10291-1172号</li>
+                            <li>京ICP备12002058号</li>
+                            <li>增值电信业务经营许可证B2-20140447</li>
+                            <li>乙测资字1111805</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <ul class="list-inline"  >
+                            <li>广播电视节目制作经营许可证（京）字第04005号</li>
+                            <li>Copyright © 2009-2019 WEIBO 北京微梦创科网络技术有限公司</li>
+                            <li>京公网安备11000002000019号</li>
+
+                        </ul>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

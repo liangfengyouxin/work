@@ -1,0 +1,359 @@
+{% extends 'bobo/base.html' %}
+{#{% load bobo_tags %}#}
+{#{% load comments %}#}
+{% block title %}微博首页{% endblock title %}
+{% block css %}
+{# link引入样式表index的css文件 #}
+    {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/indexcss.css' %}">
+{% endblock css %}
+
+{% block content %}
+{# 微博首页网页主体#}
+{% load staticfiles %}
+<div class="wrapper style1">
+    {# 网页头部轮播效果+广告 #}
+    <div class="container container2">
+        <div class="row">
+            {# 轮播图  #}
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                  <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol>
+
+
+                  <div class="carousel-inner carousel-inner1" role="listbox">
+
+
+                       {#  轮播图显示图片 #}
+                        {% for pic in hotpic %}
+                            {% if pic.index == 1 %}
+                                <div class="item active">
+                                  <img src="{{ pic.pic.url }}" alt="lunbotu2">
+                                  <div class="carousel-caption">
+                                    唯爱与美食不可辜负
+                                  </div>
+                                </div>
+
+                            {% else %}
+                                <div class="item">
+                                   {#  轮播图显示图片 #}
+                                  <img src="{{ pic.pic.url }}" alt="图片加载失败">
+                                  <div class="carousel-caption">
+                                    微博——发现身边新鲜事
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                  </div>
+
+
+                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">上一张</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">下一张</span>
+                  </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="extra">
+        <div class="container  container1 ">
+            <div class="col-md-8">
+            {% for bobo in bobo_list %}
+            <div class="row no-collapse-1  ">
+                <section class="12u">
+                    <div class="box">
+                        <div class="row weber-info">
+                            <div class="col-md-12">
+                                <div class="media weber-info">
+                                  <div class="media-left">
+                                    <a href="#">
+                                      <img class="media-object img-circle" src="{% static 'images/content/02.jpg' %}" alt="...">
+                                    </a>
+                                  </div>
+                                  <div class="media-body">
+                                    <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
+                                        <br>
+                                        <span>{{ bobo.create_time }}</span>
+                                    </h4>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# 截取每篇微博的前100字 #}
+                        <p > <b>{{ bobo.content|truncatechars:66}} ......</b> </p>
+                        {% if bobo.img %}
+                            <a href="#" class="image featured"><img src="{{ bobo.img.url }}" alt="图片加载失败"></a>
+                        {% else %}
+                        {% endif %}
+
+
+                        <div class="media-bottom">
+                            <ul class="list-inline">
+                                <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
+{#                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;#}
+{#                                {% get_comment_count for weibo as comment_count %}#}
+{#                                        {{ comment_count }}</i>#}
+{#                                </li>#}
+                            </ul>
+                        </div>
+                        <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>
+                </section>
+            </div>
+
+            {% endfor %}
+                <hr>
+            {# 在右侧添加分页栏 #}
+
+            <div id="paginator" class="pull-right">
+
+                <ul class="pagination ">
+                    {% if weibo_list.has_previous %}
+                        <li><a href="?page={{ weibo_list.previous_page_number }}">
+                            <i class="glyphicon glyphicon-chevron-left"></i> 前一页</a>
+
+                        </li>
+                    {% endif %}
+
+                    {% if first %}
+                    <li><a href="?page=1">1</a></li>
+                    {% endif %}
+
+                    {% if left %}
+                        {% if left_has_more %}
+                            <span>...</span>
+                        {% endif %}
+                        {% for i in left %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+
+                    <li class="active"><a href="?page={{ weibo_list.number }}">{{ weibo_list.number }}</a> </li>
+
+
+                    {% if right %}
+                        {% for i in right %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+
+                        {% if right_has_more %}
+                            <span>...</span>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if last %}
+                    <li><a href="?page={{ weibo_list.num_pages }}">{{ weibo_list.num_pages }}</a> </li>
+                    {% endif %}
+
+                    {% if weibo_list.has_next %}
+                        <li><a href="?page={{ weibo_list.next_page_number }}">
+                            后一页<i class="glyphicon glyphicon-chevron-right"></i> </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+
+
+
+
+            </div>
+
+            </div>
+            <div id="main" class="col-md-4">
+                <div class="container">
+                    <div class="row row1">
+                        <div class="6u 6u1">
+                            <section>
+{#                                {% include 'bobo/index_right_side.html' %}#}
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main" class="col-md-4">
+                <div class="container">
+                <div class="row row1">
+
+                    <div class="6u 6u1">
+
+                        <section>
+
+                            <ul class="style">
+
+                                <li class="fa fa-wrench">
+
+                                    <h3>热门话题</h3>
+                                    <ul class="hot-topic">
+                                      <li style="padding: 10px;"><a href="#">五一放假4天</a></li>
+                                      <li style="padding: 10px;"><a href="#">世界睡眠日</a></li>
+                                      <li style="padding: 10px;"><a href="#">一见钟情的初恋脸</a></li>
+                                      <li style="padding: 10px;"><a href="#">中国反邪教</a></li>
+                                      <li style="padding: 10px;"><a href="#">敷衍式撸猫</a></li>
+                                      <br>
+
+                                    </ul>
+
+                                </li>
+                                {# 这是推荐博主 #}
+                                <li class="fa fa-leaf">
+
+                                        <h3>有趣博主</h3>
+                                            <ul class="hot-author">
+                                              <li style="padding: 10px;">
+                                                  <img src="{% static 'images/content/01.jpg' %}" class="img-circle" >
+                                                  <a href="#">朱正廷</a>
+                                              </li>
+                                              <li style="padding: 10px;">
+                                                  <img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">李权哲</a>
+                                              </li>
+                                              <li style="padding: 10px;">
+                                                  <img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">毕雯珺</a>
+                                              </li>
+                                              <li style="padding: 10px;">
+                                                  <img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">Jeffery</a>
+                                              </li>
+                                              <li style="padding: 10px;">
+                                                  <img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">尤长靖</a>
+                                              </li>
+                                              <li style="padding: 10px;">
+                                                  <img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">尤长靖</a>
+                                              </li>
+                                              <li style="padding: 10px;"
+                                              ><img src="/static/images/content/01.jpg" class="img-circle" >
+                                                  <a href="#">尤长靖</a>
+                                              </li>
+
+                                            </ul>
+
+
+
+                                 </li>
+                            </ul>
+
+                        </section>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            </div>
+            <div id="main" class="col-md-4">
+                <div class="container">
+                <div class="row row1">
+                    <div class="6u 6u2">
+
+                        <section>
+                            <ul class="style">
+
+                                <li class="fa fa-cogs">
+
+                                    <h3>亚洲新歌榜</h3>
+                                    <ul class="new-song">
+                                      <li style="padding: 10px;"><a href="#">年少有为（李荣浩）</a></li>
+                                      <li style="padding: 10px;"><a href="#">卡路里（火箭少女）</a></li>
+                                      <li style="padding: 10px;"><a href="#">平凡的一天（毛不易）</a></li>
+                                      <li style="padding: 10px;"><a href="#">一个人去巴黎（董友霖）</a></li>
+                                      <li style="padding: 10px;"><a href="#">最后一课（至上励合）</a></li>
+                                      <br>
+                                     </ul>
+
+                                </li>
+
+
+                                <li class="fa fa-road">
+
+                                    <h3>商品推荐</h3>
+
+                                    <!-- 广告轮播图 -->
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                      <!-- Indicators -->
+                                      <ol class="carousel-indicators">
+                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                      </ol>
+
+                                      <!-- Wrapper for slides -->
+                                      <div class="carousel-inner carousel-inner2" role="listbox">
+                                        <div class="item active">
+                                            <!-- 轮播图显示图片 -->
+                                          <img src="/static/images/lunbotu/red_dress.jpg" alt="红裙">
+                                          <div class="carousel-caption">
+                                            性感热辣红裙
+                                          </div>
+                                        </div>
+                                        <div class="item">
+                                          <img src="/static/images/lunbotu/blue_dress.jpg" alt="蓝裙">
+                                          <div class="carousel-caption">
+                                            清纯典雅蓝裙
+                                          </div>
+                                        </div>
+                                        <div class="item">
+                                          <img src="/static/images/lunbotu/white_dress.jpg" alt="白裙">
+                                          <div class="carousel-caption">
+                                            仙气飘飘白裙
+                                          </div>
+                                        </div>
+                                        广告位出租，有意者请联系XXXXXXXXX
+                                      </div>
+
+                                      <!-- Controls -->
+                                      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">上一张</span>
+                                      </a>
+                                      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">下一张</span>
+                                      </a>
+                                    </div>
+
+
+
+                                </li>
+
+                            </ul>
+                        </section>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock content %}
