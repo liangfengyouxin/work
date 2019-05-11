@@ -1,0 +1,23 @@
+{% extends 'bobo/base.html' %}
+{% block title %}500{% endblock title %}
+{% block css %}
+{# link引入样式表403的css文件 #}
+
+{% endblock css %}
+
+{% block content %}
+<section id="container text-center" style="min-height: 600px">
+<h1>500,Page Error！</h1>
+<p>服务器端错误</p>
+    <a class="btn btn-primary" href="{% url 'bobo:index' %}"
+       style="background-color: #d84780;border-color: #d84780;text-decoration: none">返回主页</a>
+
+
+</section>
+
+
+
+
+{% block script %}
+{% endblock script %}
+{% endblock content %}

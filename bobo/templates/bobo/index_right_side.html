@@ -1,0 +1,49 @@
+{% load bobo_tags %}
+<div id="row">
+    <div id="widget">
+        <h3 style="color: #FFF;font-size: 2em">推荐微博</h3>
+        {% get_recent_bobo_all as recent_bobo %}
+
+        {% for bobo in recent_bobo %}
+            <div style="margin: 20px">
+                <a href="{{ bobo.get_absolute_url }}" style="text-decoration: none; font-size: 25px">
+                    {{ bobo.content|truncatechars:20}}......</a>
+                <span class="badge">{{ bobo.views}}</span>
+                <br>
+                {{ bobo.author}}发表于{{ bobo.create_time }}
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+
+
+
+<div id="row">
+    <div id="widget">
+        <h3 style="color: #FFF;font-size: 2em">微博归档</h3>
+        {% archives as date_list %}
+        <ul id="list-group">
+        {% for date in date_list %}
+            <li id="list-group-item">
+                <a href="{% url 'bobo:archives' date.year date.month %}">
+                    <i class="glyphicon glyphicon-chevron-right">
+                        {{ date.year }} 年 {{ date.month }}月
+                        <span class="badge">{% get_bobo_count_of_date date.year date.month%}</span>
+
+                    </i>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="rss">
+        <a href="{% url 'bobo:rss' %}" style="font-size: 30px;text-decoration: none"><span class="glyphicon glyphicon-cd " style="font-size: 30px"></span> RSS 订阅</a>
+    </div>
+</div>

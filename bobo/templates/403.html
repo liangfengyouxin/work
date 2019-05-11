@@ -1,0 +1,23 @@
+{% extends 'bobo/base.html' %}
+{% block title %}403{% endblock title %}
+{% block css %}
+{# link引入样式表403的css文件 #}
+
+{% endblock css %}
+
+{% block content %}
+<section id="container text-center" style="min-height: 600px">
+<h1>403,Forbodden！</h1>
+<p>你没有权限访问该页面</p>
+    <a class="btn btn-primary" href="{% url 'bobo:index' %}"
+       style="background-color: #d84780;border-color: #d84780;text-decoration: none">返回主页</a>
+
+
+</section>
+
+
+
+
+{% block script %}
+{% endblock script %}
+{% endblock content %}

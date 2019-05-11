@@ -1,5 +1,9 @@
 from django.conf.urls import url,include
 from . import views
+from .feed import BoboFeed
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+
 
 
 
@@ -10,5 +14,8 @@ urlpatterns = [
     url(r'^$',views.index,name='index'),
     #显示微博文章详情,(\d+)为组,django在调用视图函数时,组的内容为参数,可传入到对应的视图函数中去
     url(r'^detail/(\d+)/$',views.detail,name='detail'),
+    url(r'^search/$',views.search,name='search'),
+    url(r'^archives/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$', views.archives, name='archives'),
+    url(r'^rss/$',BoboFeed(),name='rss'),
 
 ]

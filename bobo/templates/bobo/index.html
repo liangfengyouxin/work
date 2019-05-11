@@ -1,5 +1,5 @@
 {% extends 'bobo/base.html' %}
-{#{% load bobo_tags %}#}
+{% load bobo_tags %}
 {#{% load comments %}#}
 {% block title %}微博首页{% endblock title %}
 {% block css %}
@@ -122,8 +122,8 @@
             <div id="paginator" class="pull-right">
 
                 <ul class="pagination ">
-                    {% if weibo_list.has_previous %}
-                        <li><a href="?page={{ weibo_list.previous_page_number }}">
+                    {% if bobo_list.has_previous %}
+                        <li><a href="?page={{ bobo_list.previous_page_number }}">
                             <i class="glyphicon glyphicon-chevron-left"></i> 前一页</a>
 
                         </li>
@@ -142,7 +142,7 @@
                         {% endfor %}
                     {% endif %}
 
-                    <li class="active"><a href="?page={{ weibo_list.number }}">{{ weibo_list.number }}</a> </li>
+                    <li class="active"><a href="?page={{ bobo_list.number }}">{{ bobo_list.number }}</a> </li>
 
 
                     {% if right %}
@@ -156,11 +156,11 @@
                     {% endif %}
 
                     {% if last %}
-                    <li><a href="?page={{ weibo_list.num_pages }}">{{ weibo_list.num_pages }}</a> </li>
+                    <li><a href="?page={{ bobo_list.num_pages }}">{{ bobo_list.num_pages }}</a> </li>
                     {% endif %}
 
-                    {% if weibo_list.has_next %}
-                        <li><a href="?page={{ weibo_list.next_page_number }}">
+                    {% if bobo_list.has_next %}
+                        <li><a href="?page={{ bobo_list.next_page_number }}">
                             后一页<i class="glyphicon glyphicon-chevron-right"></i> </a>
                         </li>
                     {% endif %}
@@ -179,7 +179,7 @@
                     <div class="row row1">
                         <div class="6u 6u1">
                             <section>
-{#                                {% include 'bobo/index_right_side.html' %}#}
+                                {% include 'bobo/index_right_side.html' %}
                             </section>
 
                         </div>

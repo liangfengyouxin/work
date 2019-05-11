@@ -1,6 +1,6 @@
-{% extends 'weibo/base.html' %}
+{% extends 'bobo/base.html' %}
 {% load static %}
-{% load comments %}
+{#{% load comments %}#}
 {% block title %}微博详情页面{% endblock title %}
 {% block css %}
 {# link引入样式表detail的css文件 #}
@@ -44,7 +44,7 @@
                         </div>
 
                         <p > <b>{{ bobo.content }} </b> </p>
-                        {% if weibo.img %}
+                        {% if bobo.img %}
                             <a href="#" class="image featured"><img src="{{ bobo.img.url }}" alt="图片加载失败"></a>
                         {% else %}
                         {% endif %}
@@ -52,7 +52,7 @@
 
                         <div class="media-bottom">
                             <ul class="list-inline">
-                                <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ weibo.views }}</i></li>
+                                <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
 {#                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;#}
 {##}
 {#                                    {% get_comment_count for weibo as comment_count %}#}
