@@ -163,6 +163,7 @@ def detail(request,id):
     return render(request, 'bobo/detail.html', locals())
 
 def search(request):
+    name = request.user.username
     # 在搜索的视图函数中获取关键字，没有关键字则获取为None
     keyword = request.GET.get('keyword',None)
 
@@ -180,6 +181,7 @@ def search(request):
 
 
 def archives(request,year,month):
+    name = request.user.username
     bobo_archives = models.Bobo.objects.filter(create_time__year=year,create_time__month=month)
     # 从request请求中的get方法中获取page的值，如果有则page的值为page，如果没有，page的值为1
     page = request.GET.get('page', 1)
@@ -187,3 +189,7 @@ def archives(request,year,month):
     bobo_list, paginator = make_paginator(bobo_archives, page)
     page_data = pagination_data(paginator, page)
     return render(request, 'bobo/index.html', locals())
+
+
+
+
