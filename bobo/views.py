@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . import models
 from django.db.models import Q
+from django_comments.models import Comment
 from collections import Counter
 from django.http import HttpResponse,HttpResponseRedirect,HttpRequest
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
-# from django_comments.models import Comment
-# from django_comments import models as comment_models
+from django_comments.models import Comment
+from django_comments import models as comment_models
 
 
 # Create your views here.
@@ -160,6 +161,18 @@ def detail(request,id):
     # 每点击一次微博详情页面，那个微博浏览量就会加1
     bobo.increase_views()
 
+    comment_list = list()
+    def get_comment_list(comments):
+        for comment in comments:
+            comment_list.append(comment)
+            children = comment.child_comment.all()
+            if len(children) > 0:
+                get_comment_list(children)
+
+    top_comments = Comment.objects.filter(object_pk=id,parent_comment=None,
+                                          content_type__app_label='bobo').order_by('-submit_date')
+    get_comment_list(top_comments)
+
     return render(request, 'bobo/detail.html', locals())
 
 def search(request):
@@ -189,6 +202,12 @@ def archives(request,year,month):
     bobo_list, paginator = make_paginator(bobo_archives, page)
     page_data = pagination_data(paginator, page)
     return render(request, 'bobo/index.html', locals())
+
+
+def reply(request,comment_id):
+    name = request.user.username
+    parent_comment = get_object_or_404(comment_models.Comment,id=comment_id)
+    return render(request,'bobo/reply.html',locals())
 
 
 

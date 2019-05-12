@@ -74,33 +74,14 @@
                     </li>
               {% else %}
                 <li>
-                {# https://api.weibo.com/oauth2/    新浪微博指定发往地址 #}
-                    {# authorize  开始认证 ?之后开始提供参数 #}
-                    {# client_id 开发者账号 #}
-                    {# response_type=code 响应类型为代码 #}
-                    {# redirect_uri 访问微博之后，微博接收用户认证请求，会回访我们的网站http://www.192.168.12.130:8000/ #}
-                    {# request.path django封装好的，原来请求页面的地址 。登陆成功后可以返回用户界面#}
+
                     <a href="http://127.0.0.1:8000/accounts/weibo/login">
                         <img src="{% static 'images/tubiao/tubiao.png' %}" alt="微博开放平台" style="width: 30px;height: 30px;padding: 0px;margin-top: -5px">
                     </a>
                 </li>
 
               {% endif %}
-{#            <li class="dropdown">#}
-{#              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
-{#                 aria-expanded="false"> <i class="glyphicon glyphicon-link"></i>网站导航<span class="caret"></span>#}
-{#              </a>#}
-{#              <ul class="dropdown-menu">#}
-{#                <li><a href="#">发表微博</a></li>#}
-{#                <li><a href="#">退出微博</a></li>#}
-{#                <li role="separator" class="divider"></li>#}
-{#                <li><a href="#">查看消息</a></li>#}
-{#                <li><a href="#">最新评论</a></li>#}
-{#                <li role="separator" class="divider"></li>#}
-{#                <li><a href="#">修改登录密码</a></li>#}
-{#                <li><a href="#">完善个人资料</a></li>#}
-{#              </ul>#}
-{#            </li>#}
+
 
           </ul>
         </div>

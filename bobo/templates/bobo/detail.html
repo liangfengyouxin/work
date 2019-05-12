@@ -1,6 +1,6 @@
 {% extends 'bobo/base.html' %}
 {% load static %}
-{#{% load comments %}#}
+{% load comments %}
 {% block title %}微博详情页面{% endblock title %}
 {% block css %}
 {# link引入样式表detail的css文件 #}
@@ -53,132 +53,122 @@
                         <div class="media-bottom">
                             <ul class="list-inline">
                                 <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
-{#                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;#}
-{##}
-{#                                    {% get_comment_count for weibo as comment_count %}#}
-{#                                        {{ comment_count }}</i></li>#}
+                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;
+
+                                    {% get_comment_count for bobo as comment_count %}
+                                        {{ comment_count }}</i></li>
                             </ul>
                         </div>
                 </section>
                 <br><br><br>
 
 
-{#            #}
-{#                    <section >#}
-{#                        <div class="box" style="padding: 0px">#}
-{#                            <div class="row weber-info" style="margin: 0px;">#}
-{#                                <div class="col-md-10 col-md-offset-1" style="background-color: cadetblue;padding-top: 10px;#}
-{#                                padding-bottom: 10px;margin-left: 60px;margin-bottom: 40px">#}
-                     {#评论表单#}
-{#                    {% if request.session.login or request.user.is_authenticated %}#}
-{##}
-{#                        <div class="row" style="margin: 0px">#}
-{#                            {% get_comment_form for weibo as form %}#}
-{#                            <form class="form-horizontal" action="{% comment_form_target %}" method="post" >#}
-{#                                {% csrf_token %}#}
-{#                                <br>#}
-{##}
-{#                                <div class="form-group" style="margin: 0px" >#}
-{#                                    <label for="input_comment" class="pull-left control-label">评论内容:</label><br>#}
-{#                                    <div class="col-sm-6" >#}
-{#                                    <textarea style="resize:none;padding: 0px;margin-right: 0px;width: 350px"  rows=6 name="comment" id="input_comment"#}
-{#                                              placeholder="请在此输入评论，评论最多140个字" required></textarea>#}
-{#                                    </div>#}
-{#                                </div>#}
-        {#                       防止机器人填写表单#}
-{#                                <span style="display: none;">{{ form.honeypot }}</span>#}
-{#                                {{ form.content_type }}#}
-{#                                {{ form.object_pk }}#}
-{#                                {{ form.timestamp }}#}
-{#                                {{ form.security_hash }}#}
-{#                                <input type="hidden" name="next" value="{% url 'weibo:detail' weibo.id %}" />#}
-{#                                <input  name="parent_id" type="hidden" value="-1" />#}
-{#                                <input  name="level" type="hidden" value="0" />#}
-{#                                <br>#}
-{#                                <div class="form-group col-sm-10" style="margin-right: 0px">#}
-{#                                    <div class="pull-left" style="margin-left: 50px;">#}
-{#                                        <button type="reset"  class="btn btn-default"><span class="glyphicon glyphicon-repeat">#}
-{##}
-{#                                        </span>&nbsp;&nbsp;重置</button>#}
-{#                                    </div>#}
-{#                                    <div class="pull-right" style="margin-right: 30px;background-color: #d84780">#}
-{#                                        <button type="submit" class="btn" id="id_submit" style="background-color: #d84780;color: white">#}
-{#                                            <span class="glyphicon glyphicon-send" style="color: white"></span>&nbsp;&nbsp;评论</button>#}
-{#                                    </div>#}
-{#                        </div>#}
-        {##}
-        {##}
-{#                            </form>#}
-{#                        </div>#}
-{#                    {% else %}#}
-{#                        <h3>登录后才可以评论</h3>#}
-{#                        <br>#}
-{#                    {% endif %}#}
-{##}
-{##}
-{##}
-                    {# 评论显示区#}
-{#                    <div class="row" style="text-align: left">#}
-{##}
-{#                    {% for comment in comment_list %}#}
-{#                        <div class="single_comment" style="margin-left: {{ comment.level }}em;padding-bottom: 5px;#}
-{#                                padding-top: 20px;border-bottom:1px dashed lightgray ;border-left:1px dashed lightgray;width: 51% ">#}
-{#                            <div style="float: left;margin-top: -10px;">#}
-{#                                {% if comment.user_name  %}#}
-{#                                    <img src="{{ comment.user_img }}" alt="user_img"style="width: 40px;height: 40px;#}
-{#                                border-radius: 50%;overflow: hidden">#}
-{#                                {% else %}#}
-{#                                    <img src="{% static 'images/touxiang/pic_person.png' %}" alt="user_img"#}
-{#                                         style="width: 40px;height: 40px;border-radius: 50%;overflow: hidden">#}
-{#                                {% endif %}#}
-{#                             </div>#}
-{##}
-{#                            <div class="col-md-11 comment_content"  >#}
-{#                                <div>#}
-{#                                    {% if comment.parent_comment %}#}
-{#                                            <strong>{{ request.user }}{{ comment.user_name }}</strong>#}
-{#                                            <i class="glyphicon glyphicon-share-alt"></i>#}
-{#                                            {{ comment.parent_comment.user_name}} {{ request.user }}#}
-{#                                    {% else %}#}
-{##}
-{#                                            &nbsp;&nbsp;#}
-{#                                            <strong>{{ comment.user_name }} {{ request.user }} </strong>#}
-{#                                            &nbsp;&nbsp;#}
-{#                                    {% endif %}#}
-{#                                    <em>{{ comment.submit_date }}</em>#}
-{#                                        {% if request.session.login or request.user.is_authenticated  %}#}
-{##}
-{#                                        <a href="{% url 'weibo:reply' comment.id %}" style="text-decoration: none">&nbsp; &nbsp; &nbsp;回复</a>#}
-{##}
-{#                                        {% endif %}#}
-{#                                </div>#}
-{#                                <br>#}
-{#                                <p style="color: whitesmoke">{{ comment.comment }}</p>#}
-{##}
-{#                            </div>#}
-{##}
-{##}
-{##}
-{#                         </div>#}
-{#                    {% endfor %}#}
-{##}
-{##}
-{##}
-{##}
-{#                    </div>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#                </div>#}
-{##}
-{#                                 </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </section>#}
-{#        #}
-{#        #}
+
+                    <section >
+                        <div class="box" style="padding: 0px">
+                            <div class="row weber-info" style="margin: 0px;">
+                                <div class="col-md-10 col-md-offset-1" style="background-color: cadetblue;padding-top: 10px;
+                                padding-bottom: 10px;margin-left: 60px;margin-bottom: 40px">
+{#                     评论表单#}
+                    {% if request.user.username or request.user.is_authenticated %}
+
+                        <div class="row" style="margin: 0px">
+                            {% get_comment_form for bobo as form %}
+                            <form class="form-horizontal" action="{% comment_form_target %}" method="post" >
+                                {% csrf_token %}
+                                <br>
+
+                                <div class="form-group" style="margin: 0px" >
+                                    <label for="input_comment" class="pull-left control-label">评论内容:</label><br>
+                                    <div class="col-sm-6" >
+                                    <textarea style="resize:none;padding: 0px;margin-right: 0px;width: 350px"  rows=6 name="comment" id="input_comment"
+                                              placeholder="请在此输入评论，评论最多140个字" required></textarea>
+                                    </div>
+                                </div>
+{#                               防止机器人填写表单#}
+                                <span style="display: none;">{{ form.honeypot }}</span>
+                                {{ form.content_type }}
+                                {{ form.object_pk }}
+                                {{ form.timestamp }}
+                                {{ form.security_hash }}
+                                <input type="hidden" name="next" value="{% url 'bobo:detail' bobo.id %}" />
+                                <input  name="parent_id" type="hidden" value="-1" />
+                                <input  name="level" type="hidden" value="0" />
+                                <br>
+                                <div class="form-group col-sm-10" style="margin-right: 0px">
+                                    <div class="pull-left" style="margin-left: 50px;">
+                                        <button type="reset"  class="btn btn-default"><span class="glyphicon glyphicon-repeat">
+
+                                        </span>&nbsp;&nbsp;重置</button>
+                                    </div>
+                                    <div class="pull-right" style="margin-right: 30px;background-color: #d84780">
+                                        <button type="submit" class="btn" id="id_submit" style="background-color: #d84780;color: white">
+                                            <span class="glyphicon glyphicon-send" style="color: white"></span>&nbsp;&nbsp;评论</button>
+                                    </div>
+                        </div>
+
+
+                            </form>
+                        </div>
+                    {% else %}
+                        <h3>登录后才可以评论</h3>
+                        <br>
+                    {% endif %}
+
+
+
+{#                     评论显示区#}
+                    <div class="row" style="text-align: left">
+
+                    {% for comment in comment_list %}
+                        <div class="single_comment" style="margin-left: {{ comment.level }}em;padding-bottom: 5px;
+                                padding-top: 20px;border-bottom:1px dashed lightgray ;border-left:1px dashed lightgray;width: 55% ">
+
+                            <div class="col-md-11 comment_content"  >
+                                <div>
+                                    {% if comment.parent_comment %}
+                                            <strong>{{ request.user }}{{ comment.user_name }}</strong>
+                                            <i class="glyphicon glyphicon-share-alt"></i>
+                                            {{ comment.parent_comment.user_name}}
+                                    {% else %}
+
+                                            &nbsp;&nbsp;
+                                            <strong>{{ comment.user_name }}  </strong>
+                                            &nbsp;&nbsp;
+                                    {% endif %}
+                                    <em>{{ comment.submit_date }}</em>
+                                        {% if request.user.username or request.user.is_authenticated  %}
+
+                                            <a href="{% url 'bobo:reply' comment.id %}" style="text-decoration: none">&nbsp; &nbsp; &nbsp;回复</a>
+
+                                            {% endif %}
+                                    </div>
+                                    <br>
+                                    <p style="color: whitesmoke">{{ comment.comment }}</p>
+
+                                </div>
+
+
+
+                             </div>
+                        {% endfor %}
+
+
+
+
+                        </div>
+
+
+
+
+
+                </div>
+
+                                 </div>
+                            </div>
+                        </div>
+                    </section>
+
 
 
                 <br><br>

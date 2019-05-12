@@ -1,6 +1,6 @@
 {% extends 'bobo/base.html' %}
 {% load bobo_tags %}
-{#{% load comments %}#}
+{% load comments %}
 {% block title %}微博首页{% endblock title %}
 {% block css %}
 {# link引入样式表index的css文件 #}
@@ -105,10 +105,10 @@
                         <div class="media-bottom">
                             <ul class="list-inline">
                                 <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
-{#                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;#}
-{#                                {% get_comment_count for weibo as comment_count %}#}
-{#                                        {{ comment_count }}</i>#}
-{#                                </li>#}
+                                <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;
+                                {% get_comment_count for bobo as comment_count %}
+                                        {{ comment_count }}</i>
+                                </li>
                             </ul>
                         </div>
                         <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>

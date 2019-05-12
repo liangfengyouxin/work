@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^search/$',views.search,name='search'),
     url(r'^archives/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$', views.archives, name='archives'),
     url(r'^rss/$',BoboFeed(),name='rss'),
+    url(r'^reply/(?P<comment_id>\d+)/$',views.reply,name='reply'),
 
 ]
