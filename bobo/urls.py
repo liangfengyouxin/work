@@ -18,5 +18,8 @@ urlpatterns = [
     url(r'^archives/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$', views.archives, name='archives'),
     url(r'^rss/$',BoboFeed(),name='rss'),
     url(r'^reply/(?P<comment_id>\d+)/$',views.reply,name='reply'),
+    url(r'^articlepublish/$', views.articlepublish, name='articlepublish'),
+    url(r'^article_list/$', views.article_list, name='article_list'),
+    url(r'^detele/(\d+)/$', views.detele, name='detele'),
 
 ]

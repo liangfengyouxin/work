@@ -1,0 +1,118 @@
+			.navbar{
+				margin-bottom: 1px;
+			}
+			.navbar a{
+				text-decoration: none;
+			}
+			.container3 dl{
+				float: left;
+				padding: 50px;
+			}
+			#footer{
+				padding: 0px;
+			}
+
+			.container{
+				margin-top: -30px;
+			}
+
+			.author-info{
+				margin: 20px 0 20px 0;
+			}
+
+			.author-info img{
+				width: 160px;
+				height: 160px;
+				border: solid 1px gray;
+				margin-right: 30px;
+			}
+
+			.author-info .media-heading{
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+
+			.text-my{
+				color: white;
+				font-size: 20px;
+			}
+			.author-info ul{
+				margin-left: -20px;
+			}
+			.author-info li{
+				width: 80px;
+				border-right: solid 1px black;
+			}
+			.author-info li:last-of-type{
+				border-right: none;
+			}
+			.text-center a{
+				text-decoration: none;
+			}
+
+			.no-collapse-1 p{
+				margin-top: -30px;
+			}
+			.no-collapse-1 img{
+				margin-bottom: 20px;
+				height: 200px;
+			}
+			.media-bottom li{
+				width: 100px;
+				border-right: solid 1px #ddd;
+			}
+			.media-bottom li:last-of-type{
+				border-right: none;
+			}
+			.nav-tabs li a{
+				text-decoration: none;
+			}
+			.hot-author{
+				width: 300px;
+				height: 50px;
+				font-size: 20px;
+
+			}
+			.hot-author img{
+				width: 50px;
+				height: 50px;
+				border: solid 1px #DDDDDD;
+				margin-right: 10px;
+			}
+			.style a{
+				text-decoration: none;
+			}
+
+			.panel-group{
+				margin-top: 50px;
+			}
+			.panel-default{
+				background: #FFFAE8;
+			}
+			.panel-heading{
+				padding: 20px;
+			}
+			.panel-heading a{
+				color: white;
+			}
+			.weber-info{
+				margin-top: -30px;
+
+			}
+
+			.weber-info img{
+				width: 60px;
+				height: 60px;
+				border: solid 1px gray;
+
+			}
+
+			.weber-info .media-heading{
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.shanchu{
+				display: block;
+				float: right;
+				margin-top: -40px;
+			}

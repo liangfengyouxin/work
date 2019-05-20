@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 提供想接入的第三方验证账户--微博
     'allauth.socialaccount.providers.weibo',
+
     'django_comments',
 
 

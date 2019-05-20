@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,reverse
 from . import models
 from django.db.models import Q
 from django_comments.models import Comment
@@ -11,7 +11,7 @@ from django_comments import models as comment_models
 
 # Create your views here.
 # 微博分页,接收参数：对象列表,第几页，每页显示博文数量
-def make_paginator(objects,page,num=2):
+def make_paginator(objects,page,num=6):
     # 利用分页器生成对象,objects为所有的微博文章
     paginator = Paginator(objects,num)
     try:
@@ -208,6 +208,37 @@ def reply(request,comment_id):
     name = request.user.username
     parent_comment = get_object_or_404(comment_models.Comment,id=comment_id)
     return render(request,'bobo/reply.html',locals())
+
+def articlepublish(request):
+    name = request.user.username
+    if request.method == 'GET':
+        return render(request, 'bobo/article_publish.html', locals())
+    elif request.method == 'POST':
+        content = request.POST['content']
+        author_id = request.user.id
+        img = request.FILES['tupian']
+        article = models.Bobo(content=content,author_id=author_id,img=img)
+        article.save()
+        return redirect(reverse('bobo:index'))
+
+def article_list(request):
+    name = request.user.username
+    id = request.user.id
+    bobo_list = models.Bobo.objects.filter(author_id=id)
+    return render(request,'bobo/article_list.html',locals())
+
+def detele(request,bobo_id):
+    name = request.user.username
+    bobo = models.Bobo.objects.get(pk=bobo_id)
+    bobo.delete()
+
+
+
+    id = request.user.id
+    bobo_list = models.Bobo.objects.filter(author_id=id)
+    return render(request, 'bobo/article_list.html', locals())
+
+
 
 
 

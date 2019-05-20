@@ -53,7 +53,10 @@
             <li><a href="{% url 'bobo:index' %}"><i class="glyphicon glyphicon-home"></i>
                 首页<span class="sr-only">(current)</span></a>
             </li>
-
+          {% if request.user.username or request.user.is_authenticated %}
+            <li><a href="{% url 'bobo:articlepublish' %}"><i class="glyphicon glyphicon-pencil"></i>发微博</a></li>
+              <li><a href="{% url 'bobo:article_list' %}"><i class="glyphicon glyphicon-user"></i>个人主页</a></li>
+          {% endif %}
           </ul>
           <form class="navbar-form navbar-left" action="{% url 'bobo:search' %}" method="get">
             <div class="form-group">
@@ -75,7 +78,7 @@
               {% else %}
                 <li>
 
-                    <a href="http://127.0.0.1:8000/accounts/weibo/login">
+                    <a href="http://188.131.223.17:9000/accounts/weibo/login">
                         <img src="{% static 'images/tubiao/tubiao.png' %}" alt="微博开放平台" style="width: 30px;height: 30px;padding: 0px;margin-top: -5px">
                     </a>
                 </li>

@@ -1,0 +1,110 @@
+{% extends 'bobo/base.html' %}
+{% load comments %}
+{% block title %}发表微博{% endblock title %}
+{% block css %}
+     {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/maincss.css' %}">
+{% endblock css %}
+{% block content %}
+
+
+
+
+
+
+ 	<div class="wrapper style1">
+			<div class="container container1">
+                <div class="col-md-2"></div>
+				<div class="col-md-8 ">
+					<div class="row author-info">
+						<div class="col-md-12">
+							<div class="media author-info">
+							  <div class="media-left">
+								<a href="#">
+								  <img class="media-object img-circle" src="{% static 'images/content/02.jpg' %}" alt="...">
+								</a>
+							  </div>
+							  <div class="media-body">
+								<h2 class="media-heading" style="margin-top: 50px">{{ request.user.username }}</h2>
+							  </div>
+							</div>
+						</div>
+					</div>
+
+                     <div class="row author-article">
+
+                    <div class="col-md-12 ">
+
+                          <ul class="nav nav-tabs  navbar-inverse" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的微博</a></li>
+                          </ul>
+
+							  <div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="home">
+
+									<div class="media hot-article">
+										<div class="media-heading">
+										  <br>
+                                    </div>
+
+                                 {% for bobo in bobo_list %}
+                                <div class="row no-collapse-1  ">
+                                    <section class="12u">
+                                        <div class="box">
+                                            <div class="row weber-info">
+                                                <div class="col-md-12">
+                                                    <div class="media weber-info">
+                                                      <div class="media-left">
+                                                        <a href="#">
+                                                          <img class="media-object img-circle" src="{% static 'images/content/02.jpg' %}" alt="...">
+                                                        </a>
+                                                      </div>
+                                                      <div class="media-body">
+                                                        <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
+
+                                                            <br>
+                                                            <span>{{ bobo.create_time }}</span>
+                                                            <div class="shanchu" style="float: right;margin-top: 0px">
+
+                                                            <a href="{% url 'bobo:detele' bobo.id%}" style="text-align: right"><i class="glyphicon glyphicon-trash"></i></a>
+                                                                &nbsp;&nbsp;
+                                                            </div>
+                                                        </h4>
+
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {# 截取每篇微博的前100字 #}
+                                            <p > <b>{{ bobo.content|truncatechars:66}} ......</b> </p>
+                                            {% if bobo.img %}
+                                                <a href="#" class="image featured"><img src="{{ bobo.img.url }}" alt="图片加载失败"></a>
+                                            {% else %}
+                                            {% endif %}
+                                                <div class="media-bottom">
+                                                    <ul class="list-inline">
+                                                        <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
+                                                        <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;
+                                                        {% get_comment_count for bobo as comment_count %}
+                                                                {{ comment_count }}</i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>
+                                    </section>
+                                </div>
+
+                                {% endfor %}
+
+                                </div>
+                                </div>
+                              </div>
+
+
+                    </div>
+            </div>
+
+                </div>
+            </div>
+    </div>
+{% endblock content %}
