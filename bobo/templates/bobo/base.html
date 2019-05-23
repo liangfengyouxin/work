@@ -56,6 +56,7 @@
           {% if request.user.username or request.user.is_authenticated %}
             <li><a href="{% url 'bobo:articlepublish' %}"><i class="glyphicon glyphicon-pencil"></i>发微博</a></li>
               <li><a href="{% url 'bobo:article_list' %}"><i class="glyphicon glyphicon-user"></i>个人主页</a></li>
+              <li><a href="{% url 'shoucang:shoucang_info' %}"><i class='glyphicon glyphicon-thumbs-up'></i>我的收藏</a></li>
           {% endif %}
           </ul>
           <form class="navbar-form navbar-left" action="{% url 'bobo:search' %}" method="get">

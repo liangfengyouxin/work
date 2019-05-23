@@ -47,11 +47,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.weibo',
 
     'django_comments',
+    'shoucang',
 
 
 ]
 
-SITE_ID = 2
+SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 
 

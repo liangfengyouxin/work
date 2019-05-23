@@ -109,6 +109,7 @@
                                 {% get_comment_count for bobo as comment_count %}
                                         {{ comment_count }}</i>
                                 </li>
+                                <li class="text-center text-muted">收藏 <a href="{% url 'shoucang:shoucang_add' bobo.id %}"><i class='glyphicon glyphicon-thumbs-up'></i></a></li>
                             </ul>
                         </div>
                         <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>

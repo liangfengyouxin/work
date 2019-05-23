@@ -57,6 +57,7 @@
 
                                     {% get_comment_count for bobo as comment_count %}
                                         {{ comment_count }}</i></li>
+                                <li class="text-center text-muted">收藏 <a href="{% url 'shoucang:shoucang_add' bobo.id %}"><i class='glyphicon glyphicon-thumbs-up'></i></a></li>
                             </ul>
                         </div>
                 </section>
@@ -127,7 +128,7 @@
                             <div class="col-md-11 comment_content"  >
                                 <div>
                                     {% if comment.parent_comment %}
-                                            <strong>{{ request.user }}{{ comment.user_name }}</strong>
+                                            <strong>{{ comment.user_name }}</strong>
                                             <i class="glyphicon glyphicon-share-alt"></i>
                                             {{ comment.parent_comment.user_name}}
                                     {% else %}

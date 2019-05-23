@@ -1,18 +1,23 @@
 {% extends 'bobo/base.html' %}
+{% load bobo_tags %}
 {% load comments %}
-{% block title %}发表微博{% endblock title %}
+{% block title %}我的收藏{% endblock title %}
 {% block css %}
-     {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/maincss.css' %}">
+{# link引入样式表index的css文件 #}
+    {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/maincss.css' %}">
 {% endblock css %}
+
 {% block content %}
+{#    {% for shoucang in shoucang_list %}#}
+{#        {{ shoucang.user.username }}    <br>#}
+{#        {{ shoucang.bo.author }}    <br>#}
+{#        {{ shoucang.bo.content }}<br>#}
+{#    {% empty %}#}
+{#        您没有收藏微博#}
+{#    {% endfor %}#}
 
-
-
-
-
-
- 	<div class="wrapper style1">
+	<div class="wrapper style1">
 			<div class="container container1">
                 <div class="col-md-2"></div>
 				<div class="col-md-8 ">
@@ -30,8 +35,8 @@
 
 										<li class="text-center">
 											<a href="#" >
-												<span class="text-my"><b>{{ bobo_num }}</b> </span><br>
-												<span class="text-muted"><b>微博</b></span>
+												<span class="text-my"><b>{{ shoucang_num }}</b> </span><br>
+												<span class="text-muted"><b>收藏</b></span>
 											</a>
 										</li>
 
@@ -46,7 +51,7 @@
                     <div class="col-md-12 ">
 
                           <ul class="nav nav-tabs  navbar-inverse" role="tablist">
-                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的微博</a></li>
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的收藏</a></li>
                           </ul>
 
 							  <div class="tab-content">
@@ -57,7 +62,7 @@
 										  <br>
                                     </div>
 
-                                 {% for bobo in bobo_list %}
+                                 {% for shoucang in shoucang_list %}
                                 <div class="row no-collapse-1  ">
                                     <section class="12u">
                                         <div class="box">
@@ -70,13 +75,13 @@
                                                         </a>
                                                       </div>
                                                       <div class="media-body">
-                                                        <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
+                                                        <h4 class="media-heading" style="text-align: left;">{{ shoucang.bo.author}}
 
                                                             <br>
-                                                            <span>{{ bobo.create_time }}</span>
+                                                            <span>{{ shoucang.bo.create_time }}</span>
                                                             <div class="shanchu" style="float: right;margin-top: 0px">
 
-                                                            <a href="{% url 'bobo:detele' bobo.id%}" style="text-align: right"><i class="glyphicon glyphicon-trash"></i></a>
+{#                                                            <a href="{% url 'shoucang:shoucang_detele' shoucang.bo.id%}" style="text-align: right"><i class="glyphicon glyphicon-trash"></i></a>#}
                                                                 &nbsp;&nbsp;
                                                             </div>
                                                         </h4>
@@ -86,21 +91,22 @@
                                                 </div>
                                             </div>
                                             {# 截取每篇微博的前100字 #}
-                                            <p > <b>{{ bobo.content|truncatechars:66}} ......</b> </p>
-                                            {% if bobo.img %}
-                                                <a href="#" class="image featured"><img src="{{ bobo.img.url }}" alt="图片加载失败"></a>
+                                            <p > <b>{{ shoucang.bo.content|truncatechars:66}} ......</b> </p>
+                                            {% if shoucang.bo.img %}
+                                                <a href="#" class="image featured"><img src="{{ shoucang.bo.img.url }}" alt="图片加载失败"></a>
                                             {% else %}
                                             {% endif %}
                                                 <div class="media-bottom">
                                                     <ul class="list-inline">
-                                                        <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ bobo.views }}</i></li>
+                                                        <li class="text-center text-muted">浏览<i class='glyphicon glyphicon-eye-open'>&nbsp;{{ shoucang.bo.views }}</i></li>
                                                         <li class="text-center text-muted">评论<i class='glyphicon glyphicon-comment'>&nbsp;
-                                                        {% get_comment_count for bobo as comment_count %}
+                                                        {% get_comment_count for shoucang.bo as comment_count %}
                                                                 {{ comment_count }}</i>
                                                         </li>
+                                                        <li class="text-center text-muted">收藏 <a href="{% url 'shoucang:shoucang_add' shoucang.bo.id %}"><i class='glyphicon glyphicon-thumbs-up'></i></a></li>
                                                     </ul>
                                                 </div>
-                                            <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>
+                                            <a href="{{ shoucang.bo.get_absolute_url }}" class="button">展开全文</a> </div>
                                     </section>
                                 </div>
 
@@ -117,4 +123,8 @@
                 </div>
             </div>
     </div>
+
+
 {% endblock content %}
+
+

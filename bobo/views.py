@@ -7,6 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpRequest
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django_comments.models import Comment
 from django_comments import models as comment_models
+from django.db.models import Q,F
 
 
 # Create your views here.
@@ -225,15 +226,13 @@ def article_list(request):
     name = request.user.username
     id = request.user.id
     bobo_list = models.Bobo.objects.filter(author_id=id)
+    bobo_num = len(bobo_list)
     return render(request,'bobo/article_list.html',locals())
 
 def detele(request,bobo_id):
     name = request.user.username
     bobo = models.Bobo.objects.get(pk=bobo_id)
     bobo.delete()
-
-
-
     id = request.user.id
     bobo_list = models.Bobo.objects.filter(author_id=id)
     return render(request, 'bobo/article_list.html', locals())

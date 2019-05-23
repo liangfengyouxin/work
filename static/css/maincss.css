@@ -40,7 +40,7 @@
 				margin-left: -20px;
 			}
 			.author-info li{
-				width: 80px;
+				width: 40%;
 				border-right: solid 1px black;
 			}
 			.author-info li:last-of-type{

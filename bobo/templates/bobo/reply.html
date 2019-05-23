@@ -19,7 +19,7 @@
                                 <div class="single_comment">
                                     <div>
 
-                                    &nbsp;&nbsp;<b>{{ parent_comment.user_name }} {{ request.user }}</b>&nbsp;&nbsp;<em>{{ parent_comment.submit_date }}</em>
+                                    &nbsp;&nbsp;<b>{{ parent_comment.user_name }} </b>&nbsp;&nbsp;<em>{{ parent_comment.submit_date }}</em>
                                     </div>
                                 <p style="color: whitesmoke">{{ parent_comment.comment }}</p>
                                 </div>
@@ -27,7 +27,7 @@
 
 
 
-                         <h2>回复 &nbsp;&nbsp;&nbsp;&nbsp; {{ parent_comment.user_name }} {{ request.user }}</h2>
+                         <h2>回复 &nbsp;&nbsp;&nbsp;&nbsp; {{ parent_comment.user_name }} </h2>
 
                             {% if request.user.username or request.user.is_authenticated %}
 
