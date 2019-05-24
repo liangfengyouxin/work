@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^latest/feed/$',BoboFeed()),
     url(r'^comments/', include('django_comments.urls')),
     url(r'shoucang/',include('shoucang.urls',namespace='shoucang')),
-    # url(r'guanzhu/',include('guanzhu.urls',namespace='guanzhu')),
+    url(r'guanzhu/',include('guanzhu.urls',namespace='guanzhu')),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 # 配置用户发的图片存储地址,不写会微博图片和轮播图片显示加载失败

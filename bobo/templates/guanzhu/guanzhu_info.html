@@ -1,0 +1,101 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#关注数量：{{ guanzhu_num }}#}
+{#<br>#}
+{#{% for guanzhu in guanzhu_list %}#}
+{#       {{ guanzhu.guanzhu_user.username}}#}
+{#{% endfor %}#}
+{##}
+{#</body>#}
+{#</html>#}
+
+{% extends 'bobo/base.html' %}
+{% load bobo_tags %}
+{% load comments %}
+{% block title %}我的关注{% endblock title %}
+{% block css %}
+{# link引入样式表index的css文件 #}
+    {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/maincss.css' %}">
+{% endblock css %}
+
+{% block content %}
+	<div class="wrapper style1">
+			<div class="container container1">
+                <div class="col-md-2"></div>
+				<div class="col-md-8 ">
+					<div class="row author-info">
+						<div class="col-md-12">
+							<div class="media author-info">
+							  <div class="media-left">
+								<a href="#">
+								  <img class="media-object img-circle" src="{% static 'images/content/02.jpg' %}" alt="...">
+								</a>
+							  </div>
+							  <div class="media-body">
+								<h2 class="media-heading" style="margin-top: 50px">{{ request.user.username }}</h2>
+                                  <ul class="list-inline" style="margin-left: -10px">
+
+										<li class="text-center">
+											<a href="#" >
+												<span class="text-my"><b>{{ guanzhu_num }}</b> </span><br>
+												<span class="text-muted"><b>关注</b></span>
+											</a>
+										</li>
+
+									</ul>
+							  </div>
+							</div>
+						</div>
+					</div>
+
+                     <div class="row author-article">
+
+                    <div class="col-md-12 ">
+
+                          <ul class="nav nav-tabs  navbar-inverse" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的关注</a></li>
+                          </ul>
+
+							  <div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="home">
+
+									<div class="media hot-article">
+										<div class="media-heading">
+										  <br>
+                                    </div>
+
+                                {% for guanzhu in guanzhu_list %}
+                                <div class="row no-collapse-1  ">
+                                    <section class="12u">
+                                        <div class="box">
+                                           <h1>
+                                               <a href="{% url 'bobo:user_list' guanzhu.guanzhu_user_id %}">{{ guanzhu.guanzhu_user.username}}</a>
+
+                                           </h1>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                {% endfor %}
+
+                                </div>
+                                </div>
+                              </div>
+
+
+                    </div>
+            </div>
+
+                </div>
+            </div>
+    </div>
+
+
+{% endblock content %}

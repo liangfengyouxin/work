@@ -36,6 +36,7 @@
 											</a>
 										</li>
 
+
 									</ul>
 
 
@@ -73,8 +74,8 @@
                                                         </a>
                                                       </div>
                                                       <div class="media-body">
-                                                        <h4 class="media-heading" style="text-align: left;"><a href="{% url 'bobo:user_list' bobo.author_id %}">{{ bobo.author}}</a>
-
+                                                        <h4 class="media-heading" style="text-align: left;"><a href="{% url 'bobo:user_list' bobo.author_id %}">{{ bobo.author}}</a>&nbsp;&nbsp;
+                                                             <a href="{% url 'guanzhu:guanzhu_add' bobo.author_id %}">关注</a>
                                                             <br>
                                                             <span>{{ bobo.create_time }}</span>
                                                             <div class="shanchu" style="float: right;margin-top: 0px">

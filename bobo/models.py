@@ -60,14 +60,13 @@ class Shoucang(models.Model):
         return self.bo
 
 
-# class Guanzhu(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     guanzhu_u = models.ForeignKey(User,on_delete=models.CASCADE)
-#     user = models.ForeignKey(User,on_delete=models.CASCADE)
-#     addguan_time = models.DateTimeField(auto_now_add=True, verbose_name='关注时间')
-#
-#     def __str__(self):
-#         return self.guanzhu_u
+class Guanzhu(models.Model):
+    id = models.AutoField(primary_key=True)
+    guanzhu_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    addguan_time = models.DateTimeField(auto_now_add=True, verbose_name='关注时间')
+
+    def __str__(self):
+        return self.guanzhu_user
 
 
 
