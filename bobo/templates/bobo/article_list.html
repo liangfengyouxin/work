@@ -70,8 +70,7 @@
                                                         </a>
                                                       </div>
                                                       <div class="media-body">
-                                                        <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
-
+                                                        <h4 class="media-heading" style="text-align: left;"><a href="{% url 'bobo:user_list' bobo.author_id %}">{{ bobo.author}}</a>
                                                             <br>
                                                             <span>{{ bobo.create_time }}</span>
                                                             <div class="shanchu" style="float: right;margin-top: 0px">
@@ -98,6 +97,7 @@
                                                         {% get_comment_count for bobo as comment_count %}
                                                                 {{ comment_count }}</i>
                                                         </li>
+                                                        <li class="text-center text-muted">收藏 <a href="{% url 'shoucang:shoucang_add' bobo.id %}"><i class='glyphicon glyphicon-thumbs-up'></i></a></li>
                                                     </ul>
                                                 </div>
                                             <a href="{{ bobo.get_absolute_url }}" class="button">展开全文</a> </div>

@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^articlepublish/$', views.articlepublish, name='articlepublish'),
     url(r'^article_list/$', views.article_list, name='article_list'),
     url(r'^detele/(\d+)/$', views.detele, name='detele'),
+    url(r'^user_list/(\d+)/$', views.user_list, name='user_list'),
 
 ]

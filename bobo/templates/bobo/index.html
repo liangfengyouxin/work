@@ -85,7 +85,8 @@
                                     </a>
                                   </div>
                                   <div class="media-body">
-                                    <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
+                                    <h4 class="media-heading" style="text-align: left;"><a href="{% url 'bobo:user_list' bobo.author_id %}">{{ bobo.author}}</a>
+{#                                        <a href="{% url 'guanzhu:guanzhu_add' bobo.author.id %}">关注</a>#}
                                         <br>
                                         <span>{{ bobo.create_time }}</span>
                                     </h4>
@@ -175,10 +176,10 @@
             </div>
 
             </div>
-            <div id="main" class="col-md-4">
-                <div class="container">
-                    <div class="row row1">
-                        <div class="6u 6u1">
+            <div id="main" class="col-md-3">
+                <div class="container" >
+                    <div class="row row1" >
+                        <div class="5u 5u1">
                             <section>
                                 {% include 'bobo/index_right_side.html' %}
                             </section>
@@ -198,50 +199,51 @@
 
                             <ul class="style">
 
-                                <li class="fa fa-wrench">
+                                <li class="fa fa-wrench" style="width: 200px">
 
                                     <h3>热门话题</h3>
-                                    <ul class="hot-topic">
-                                      <li style="padding: 10px;"><a href="#">五一放假4天</a></li>
-                                      <li style="padding: 10px;"><a href="#">世界睡眠日</a></li>
-                                      <li style="padding: 10px;"><a href="#">一见钟情的初恋脸</a></li>
-                                      <li style="padding: 10px;"><a href="#">中国反邪教</a></li>
-                                      <li style="padding: 10px;"><a href="#">敷衍式撸猫</a></li>
+                                    <ul class="hot-topic" style="width: 200px">
+                                      <li style="padding: 10px;width: 200px"><a href="#">五一放假4天</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">世界睡眠日</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">一见钟情的初恋脸</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">中国反邪教</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">敷衍式撸猫</a></li>
                                       <br>
 
                                     </ul>
 
                                 </li>
                                 {# 这是推荐博主 #}
-                                <li class="fa fa-leaf">
+                                <br>
+                                <li class="fa fa-leaf" style="width: 200px">
 
                                         <h3>有趣博主</h3>
-                                            <ul class="hot-author">
-                                              <li style="padding: 10px;">
+                                            <ul class="hot-author" style="width: 200px">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="{% static 'images/content/01.jpg' %}" class="img-circle" >
                                                   <a href="#">朱正廷</a>
                                               </li>
-                                              <li style="padding: 10px;">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">李权哲</a>
                                               </li>
-                                              <li style="padding: 10px;">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">毕雯珺</a>
                                               </li>
-                                              <li style="padding: 10px;">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">Jeffery</a>
                                               </li>
-                                              <li style="padding: 10px;">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">尤长靖</a>
                                               </li>
-                                              <li style="padding: 10px;">
+                                              <li style="padding: 10px;width: 200px">
                                                   <img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">尤长靖</a>
                                               </li>
-                                              <li style="padding: 10px;"
+                                              <li style="padding: 10px;width: 200px"
                                               ><img src="/static/images/content/01.jpg" class="img-circle" >
                                                   <a href="#">尤长靖</a>
                                               </li>
@@ -272,15 +274,15 @@
                         <section>
                             <ul class="style">
 
-                                <li class="fa fa-cogs">
+                                <li class="fa fa-cogs" style="width: 200px">
 
                                     <h3>亚洲新歌榜</h3>
-                                    <ul class="new-song">
-                                      <li style="padding: 10px;"><a href="#">年少有为（李荣浩）</a></li>
-                                      <li style="padding: 10px;"><a href="#">卡路里（火箭少女）</a></li>
-                                      <li style="padding: 10px;"><a href="#">平凡的一天（毛不易）</a></li>
-                                      <li style="padding: 10px;"><a href="#">一个人去巴黎（董友霖）</a></li>
-                                      <li style="padding: 10px;"><a href="#">最后一课（至上励合）</a></li>
+                                    <ul class="new-song" style="width: 200px">
+                                      <li style="padding: 10px;width: 200px"><a href="#">年少有为（李荣浩）</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">卡路里（火箭少女）</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">平凡的一天（毛不易）</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">一个人去巴黎（董友霖）</a></li>
+                                      <li style="padding: 10px;width: 200px"><a href="#">最后一课（至上励合）</a></li>
                                       <br>
                                      </ul>
 

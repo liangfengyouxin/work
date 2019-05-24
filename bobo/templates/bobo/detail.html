@@ -33,7 +33,7 @@
                                     </a>
                                   </div>
                                   <div class="media-body">
-                                    <h4 class="media-heading" style="text-align: left;">{{ bobo.author}}
+                                    <h4 class="media-heading" style="text-align: left;"><a href="{% url 'bobo:user_list' bobo.author_id %}">{{ bobo.author}}</a>
                                         <br>
                                         <span>{{ bobo.create_time }}</span>
                                     </h4>

@@ -238,6 +238,17 @@ def detele(request,bobo_id):
     return render(request, 'bobo/article_list.html', locals())
 
 
+def user_list(request,user_id):
+    name = request.user.username
+    user_list = models.User.objects.filter(id=user_id)
+    for user in user_list:
+        print(user.username)
+        user_list = models.Bobo.objects.filter(author_id=user.id)
+        bobo_num = len(user_list)
+
+        return render(request,'bobo/user_list.html',locals())
+
+
 
 
 
